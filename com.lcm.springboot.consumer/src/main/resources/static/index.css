@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+p, a, #standerdescription, #selectiondescription {
+	font-size: 30px;
+}
+
+table {
+	border-spacing: 0;
+	border-color: red;
+	font-style: italic;
+	font-size: 30px;
+}

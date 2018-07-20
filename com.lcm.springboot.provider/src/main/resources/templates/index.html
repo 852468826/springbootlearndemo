@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- css引入 th:href="@{/index.css} -->
+<link type="text/css" rel="stylesheet" th:href="@{/index.css} ">
+
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div align="center">
+	<p>一、标准变量表达式取值</p>
+
+
+	<table border="1">
+		<tr th:each="user,interStart:${muser}">
+			<td th:text="${interStart.index}">index</td>
+			<td th:text="${user.name}">name</td>
+			<td th:text="${user.id}">id</td>
+			<td th:text="${user.address}">adress</td>
+			<td th:text="${user.age}">age</td>
+		</tr>
+
+	</table>
+	<p>语法:${muser.name}</p>
+</div>
+	<!-- <div th:object="${muser}">
+		<table border="1">
+			<p>二、选择变量表达时取值</p>
+
+			<tr>
+				<td th:text="*{name}">name</td>
+				<td th:text="*{id}">id</td>
+				<td th:text="*{address}">adress</td>
+				<td th:text="*{age}">age</td>
+			</tr>
+
+
+		</table>
+
+
+
+		<p>语法:th:text="*{name}"</p>
+		<br /> <a th:href="@{'/thymeleafindex/'+*{id}}"> 三、URL变量表达式 </a>
+		<p>
+			语法:@{'/thymeleafindex/'+*{id}} <br /> th:href="@{/index.css}"
+
+		</p>
+	</div> -->
+</body>
+</html>

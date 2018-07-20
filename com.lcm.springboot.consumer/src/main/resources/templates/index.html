@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- css引入 th:href="@{/index.css} -->
+<link type="text/css" rel="stylesheet" th:href="@{/index.css} ">
+
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.1.0/echarts.min.js"></script>
+</head>
+
+<body>
+
+<div align="center">
+   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+	<p>一、标准变量表达式取值</p>
+
+
+	<table border="1">
+		<tr th:each="user,interStart:${muser}">
+			<td th:text="${interStart.index}">index</td>
+			<td th:text="${user.name}">name</td>
+			<td th:text="${user.id}">id</td>
+			<td th:text="${user.address}">adress</td>
+			<td th:text="${user.age}">age</td>
+		</tr>
+
+	</table>
+	<p>语法:${muser.name}</p>
+</div>
+	<div th:each="user,j:${muser}">
+	<!-- 判断表达式 -->
+	<span th:if="${j.index eq 0}">
+	<p>二、选择变量表达时取值</p>
+		<table border="1">
+			
+	
+			<tr>
+			
+			
+				<td th:text="${user.name}">name</td>
+				<td th:text="${user.id}">id</td>
+				<td th:text="${user.address}">adress</td>
+				<td th:text="${user.age}">age</td>
+			</tr>
+
+
+		</table>
+
+
+
+		<p>语法:th:text="*{name}"</p>
+		<br /> <a th:href="@{'/consumerthymeleaf/'+${user.id}}"> 三、URL变量表达式 </a>
+		<p>
+			语法:@{'/thymeleafindex/'+*{id}} <br /> th:href="@{/index.css}"
+
+		</p>
+	</span>
+		
+	</div>
+</body>
+</html>
